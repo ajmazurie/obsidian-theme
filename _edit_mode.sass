@@ -1,0 +1,16 @@
+
+// Add some padding on top of the editor view
+.markdown-source-view .cm-scroller
+  padding-top: 20px !important
+
+// Simplify line spacing
+.markdown-source-view *
+  margin-top: 0 !important
+  margin-bottom: 0 !important
+  padding-top: 0 !important
+  padding-bottom: 0 !important
+
+// Ensure our monospace font is used everywhere while in edit mode
+.markdown-source-view *
+  font-family: var(--font-monospace)
+  font-size: calc(var(--font-text-size) * $monospace-size-factor)

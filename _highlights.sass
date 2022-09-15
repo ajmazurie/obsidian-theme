@@ -1,0 +1,22 @@
+// Customization of highlights (`==TEXT==`)
+
+span.cm-highlight, mark
+  padding-left: 3px
+  padding-right: 3px
+  border-radius: 5px
+  border: 1px solid grey
+
+=normal_text
+  font-style: normal
+  font-weight: normal
+
+// Bolded highlights turn red
+span.cm-highlight.cm-strong, strong > mark
+  background-color: rgb(238, 94, 94) !important
+  color: white !important
+  +normal_text
+
+// Italicized highlights turn green
+span.cm-highlight.cm-em, em > mark
+  background-color: rgb(221, 255, 170) !important
+  +normal_text

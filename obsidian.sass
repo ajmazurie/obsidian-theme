@@ -1,0 +1,51 @@
+@use "sass:meta"
+@use "sass:color"
+
+$monospace-font: "Inconsolata"
+$monospace-size-factor: 1.1
+$background-color: rgb(249, 247, 243)
+
+body
+  --font-monospace: #{meta.inspect($monospace-font)}, monospace !important
+
+.theme-light
+  --background-primary: #{$background-color}
+
+=font_size($factor)
+  font-size: calc(var(--font-text-size) * $factor) !important
+
+@import edit_mode
+@import preview_mode
+
+@import headers
+@import highlights
+@import callouts
+@import tags
+
+// Fix: inline code should have the same size as surrounding text
+.cm-s-obsidian span.cm-inline-code,  // editing
+.cm-s-obsidian .HyperMD-codeblock,
+.markdown-rendered code  // preview
+  +font_size($monospace-size-factor)
+
+// Fix: code blocks should have less space around them
+pre.language-shell
+  margin: 10px
+  border-radius: 5px
+
+code.language-shell
+  padding: 5px
+
+// Fix: navigation pane has too small of a font size
+.nav-file-title, .nav-folder-title
+  +font_size(0.9)
+
+ul
+  padding-left: 15px
+
+
+.jira-issue-container
+  top: 2px
+  margin-bottom: 0
+  border: 1px solid lightgrey
+  border-radius: 5px

@@ -1,0 +1,21 @@
+
+=header($levels...)
+  @each $level in $levels
+    .markdown-preview-view h#{$level},
+    .cm-s-obsidian .cm-header-#{$level}
+      @content
+
++header(1)
+  +font_size(1.6)
+  font-weight: 700
+
++header(2, 3)
+  +font_size(1.3)
+  font-weight: 700
+
++header(4, 5)
+  +font_size(1.1)
+  font-weight: 600
+
++header(3, 5)
+  border-bottom: 1px solid black
