@@ -4,12 +4,19 @@
 $monospace-font: "Inconsolata"
 $monospace-size-factor: 1.1
 $background-color: rgb(249, 247, 243)
+$accent-color: hsl(220, 100%, 60%)
+//$accent-color: rgb(203, 77, 73)
+//$accent-color: rgb(0, 191, 165)
+//$accent-color: rgb(123, 108, 217)
 
 body
   --font-monospace: #{meta.inspect($monospace-font)}, monospace !important
 
 .theme-light
   --background-primary: #{$background-color}
+  --interactive-accent: #{$accent-color}
+  --text-accent: #{color.scale($accent-color, $lightness: +5%)}
+  --text-accent-hover: #{color.scale($accent-color, $lightness: +5%)}
 
 =font_size($factor)
   font-size: calc(var(--font-text-size) * $factor) !important
@@ -21,6 +28,8 @@ body
 @import highlights
 @import callouts
 @import tags
+
+@import vertical_tabs
 
 // Fix: inline code should have the same size as surrounding text
 .cm-s-obsidian span.cm-inline-code,  // editing
