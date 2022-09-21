@@ -14,3 +14,11 @@
 .markdown-source-view *
   font-family: var(--font-monospace)
   font-size: calc(var(--font-text-size) * $monospace-size-factor)
+
+// Add a gutter to the right of the editor view
+.cm-contentContainer
+  border-right: 1px solid lightgrey
+
+// Color the gutter text in light
+.cm-gutterElement
+  color: lightgrey
