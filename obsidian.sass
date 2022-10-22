@@ -4,22 +4,57 @@
 $monospace-font: "Inconsolata"
 $monospace-size-factor: 1.1
 $background-color: rgb(249, 247, 243)
-$accent-color: hsl(220, 100%, 60%)
-//$accent-color: rgb(203, 77, 73)
-//$accent-color: rgb(0, 191, 165)
-//$accent-color: rgb(123, 108, 217)
+
+$accent-color-default: #000
+$accent-color-bases: ("red": rgb(203, 77, 73), "green": rgb(111, 176, 166), "blue": hsl(220, 100%, 60%), "purple": rgb(123, 108, 217))
+$accent-color-steps: 5, 25, 50, 75
+
+@import _settings
+
+.theme-light
+  --background-primary: #{$background-color}
+  --accent-color: #{$accent-color-default}
+  @each $step in $accent-color-steps
+    --accent-color-l#{$step}: #{color.scale($accent-color-default, $lightness: +$step*1%)}
+    --accent-color-d#{$step}: #{color.scale($accent-color-default, $lightness: -$step*1%)}
+
+  @each $accent-name, $accent-color-base in $accent-color-bases
+    &.theme-accent-#{$accent-name}
+      --accent-color: #{$accent-color-base}
+      @each $step in $accent-color-steps
+        --accent-color-l#{$step}: #{color.scale($accent-color-base, $lightness: +$step*1%)}
+        --accent-color-d#{$step}: #{color.scale($accent-color-base, $lightness: -$step*1%)}
+
+  --interactive-accent: var(--accent-color)
+  --text-accent: var(--accent-color)
+  --text-accent-hover: var(--accent-color-d25)
+
+  --titlebar-background: var(--accent-color-l50)
+  --titlebar-background-focused: var(--accent-color)
+
+  --tab-outline-color: var(--accent-color-d5)
+  --tab-outline-width: 1px
+
+  --tab-text-color: var(--accent-color-d50)
+  --tab-text-color-focused: var(--accent-color-d75)
+
+  --icon-color: var(--accent-color-d50)
+  --icon-color-hover: var(--accent-color-d50)
+  --icon-color-active: var(--accent-color-d75)
+  --icon-color-focused: var(--accent-color-d75)
+
+@function font_size($factor)
+  @return calc(var(--font-text-size) * $factor)
 
 body
   --font-monospace: #{meta.inspect($monospace-font)}, monospace !important
 
-.theme-light
-  --background-primary: #{$background-color}
-  --interactive-accent: #{$accent-color}
-  --text-accent: #{color.scale($accent-color, $lightness: +5%)}
-  --text-accent-hover: #{color.scale($accent-color, $lightness: +5%)}
+  --tab-font-size: #{font_size(0.85)}
+  --tab-font-weight: 600
 
-=font_size($factor)
-  font-size: calc(var(--font-text-size) * $factor) !important
+  --nav-item-size: #{font_size(0.9)}
+
+  --code-size: #{font_size($monospace-size-factor)}
 
 @import edit_mode
 @import preview_mode
@@ -29,14 +64,6 @@ body
 @import callouts
 @import tags
 
-@import vertical_tabs
-
-// Fix: inline code should have the same size as surrounding text
-.cm-s-obsidian span.cm-inline-code,  // editing
-.cm-s-obsidian .HyperMD-codeblock,
-.markdown-rendered code  // preview
-  +font_size($monospace-size-factor)
-
 // Fix: code blocks should have less space around them
 pre.language-shell
   margin: 10px
@@ -44,10 +71,6 @@ pre.language-shell
 
 code.language-shell
   padding: 5px
-
-// Fix: navigation pane has too small of a font size
-.nav-file-title, .nav-folder-title
-  +font_size(0.9)
 
 ul
   padding-left: 15px
