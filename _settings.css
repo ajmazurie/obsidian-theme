@@ -1,0 +1,17 @@
+/* @settings
+
+name: Snippets settings
+id: snippets-settings
+settings:
+  -
+    id: theme-accent
+    title: Theme accent
+    type: class-select
+    allowEmpty: true
+    default: none
+    options:
+      - theme-accent-red
+      - theme-accent-green
+      - theme-accent-blue
+      - theme-accent-purple
+*/

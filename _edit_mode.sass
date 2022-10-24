@@ -13,12 +13,15 @@
 // Ensure our monospace font is used everywhere while in edit mode
 .markdown-source-view *
   font-family: var(--font-monospace)
-  font-size: calc(var(--font-text-size) * $monospace-size-factor)
+  font-size: font_size($monospace-size-factor)
+
+.markdown-source-view.mod-cm6 .cm-line.HyperMD-codeblock
+  padding-left: 0
 
 // Add a gutter to the right of the editor view
 .cm-contentContainer
-  border-right: 1px solid lightgrey
+  border-right: 1px solid var(--accent-color-l50)
 
 // Color the gutter text in light
 .cm-gutterElement
-  color: lightgrey
+  color: var(--accent-color-l50)

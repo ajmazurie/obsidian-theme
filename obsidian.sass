@@ -6,7 +6,7 @@ $monospace-size-factor: 1.1
 $background-color: rgb(249, 247, 243)
 
 $accent-color-default: #000
-$accent-color-bases: ("red": rgb(203, 77, 73), "green": rgb(111, 176, 166), "blue": hsl(220, 100%, 60%), "purple": rgb(123, 108, 217))
+$accent-color-bases: ("red": rgb(203, 77, 73), "green": rgb(54, 145, 132), "blue": rgb(0, 99, 177), "purple": rgb(123, 108, 217))
 $accent-color-steps: 5, 25, 50, 75
 
 @import _settings
@@ -42,6 +42,10 @@ $accent-color-steps: 5, 25, 50, 75
   --icon-color-hover: var(--accent-color-d50)
   --icon-color-active: var(--accent-color-d75)
   --icon-color-focused: var(--accent-color-d75)
+
+  .workspace-tab-header-status-icon,
+  .workspace-tab-header-inner-icon
+    color: var(--accent-color-d50)
 
 @function font_size($factor)
   @return calc(var(--font-text-size) * $factor)
