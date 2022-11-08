@@ -17,6 +17,7 @@ $accent-color-steps: 5, 25, 50, 75
   @each $step in $accent-color-steps
     --accent-color-l#{$step}: #{color.scale($accent-color-default, $lightness: +$step*1%)}
     --accent-color-d#{$step}: #{color.scale($accent-color-default, $lightness: -$step*1%)}
+    --accent-color-s#{$step}: #{color.scale($accent-color-default, $saturation: -$step*1%)}
 
   @each $accent-name, $accent-color-base in $accent-color-bases
     &.theme-accent-#{$accent-name}
@@ -24,6 +25,7 @@ $accent-color-steps: 5, 25, 50, 75
       @each $step in $accent-color-steps
         --accent-color-l#{$step}: #{color.scale($accent-color-base, $lightness: +$step*1%)}
         --accent-color-d#{$step}: #{color.scale($accent-color-base, $lightness: -$step*1%)}
+        --accent-color-s#{$step}: #{color.scale($accent-color-base, $alpha: $step*1%)}
 
   --interactive-accent: var(--accent-color)
   --text-accent: var(--accent-color)
@@ -56,9 +58,16 @@ body
   --tab-font-size: #{font_size(0.85)}
   --tab-font-weight: 600
 
+  --tab-stacked-font-size: #{font_size(0.9)}
+  --tab-stacked-font-weight: 600
+
   --nav-item-size: #{font_size(0.9)}
 
   --code-size: #{font_size($monospace-size-factor)}
+
+.workspace-tabs.mod-stacked .workspace-tab-container .workspace-tab-header
+  background-color: var(--background-secondary) !important
+  border-left: 3px solid var(--accent-color-l25)
 
 @import edit_mode
 @import preview_mode
@@ -77,6 +86,6 @@ code.language-shell
   padding: 5px
 
 ul
-  padding-left: 15px
+  padding-left: 15px !important
 
 @import plugin_jira
