@@ -1,0 +1,35 @@
+// Fixes for the 'obsidian-jira-issue' plugin
+// See https://github.com/marc0l92/obsidian-jira-issue
+
+body
+  --kanban-border: 0px
+
+.kanban-plugin
+  --lane-width: 300px
+
+  .kanban-plugin__board > div
+    padding-top: 0
+
+  .kanban-plugin__lane
+    border: none
+    background-color: transparent
+
+    // Lane title
+    .kanban-plugin__lane-header-wrapper
+      padding: 0 5px 0 5px
+      border-bottom: none
+
+      .kanban-plugin__markdown-preview-view
+        font-size: var(--font-text-size)
+
+    // Lane items
+    .kanban-plugin__lane-items
+      .kanban-plugin__item-markdown
+        font-size: var(--font-text-size)
+
+      .kanban-plugin__item-title-wrapper
+        background: white //var(--accent-color-l75)
+
+    // Lane buttons
+    .kanban-plugin__item-button-wrapper
+      border-top: none
