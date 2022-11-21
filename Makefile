@@ -2,9 +2,10 @@
 .PHONY: build
 build: target/obsidian.css
 
-target/%.css: %.sass
-	@sass --no-source-map $? $@
+target/obsidian.css: obsidian.sass $(wildcard _*.sass)
+	@sass --no-source-map $< $@
 
+.PHONY: clean
 clean:
 	@rm -rf target
 
