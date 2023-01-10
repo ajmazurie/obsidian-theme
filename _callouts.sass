@@ -2,6 +2,49 @@
 body
   --callout-padding: 12px
 
-div.callout-content > *
-  margin-block-start: 5px
-  margin-block-end: 5px
+div.callout-content
+  & > *
+    margin-block-start: 5px
+    margin-block-end: 5px
+
+.callout[data-callout="card"]
+  background-color: var(--accent-color-alpha_5)
+  border-color: var(--accent-color-alpha_25)
+
+  margin-left: 5px
+  margin-right: 5px
+
+  border-radius: 8px
+  border-width: 2px
+
+  &:is([data-callout-metadata=right])
+    margin-left: 10%
+
+  &:is([data-callout-metadata=left])
+    margin-right: 10%
+
+  &:is([data-callout-metadata=center])
+    margin-left: 10%
+    margin-right: 10%
+
+  // With a title
+  &:is([data-callout-metadata=title])
+    padding: 10px 10px 5px 10px
+
+    .callout-title-inner
+      color: var(--text-normal)
+      font-size: font_size(1.05)
+      font-weight: 500
+      margin-bottom: 5px
+
+  // Without a title
+  &:not([data-callout-metadata=title])
+    padding: 10px
+
+    .callout-title-inner
+      color: var(--text-normal)
+      font-weight: normal
+
+  // No icons
+  .callout-icon
+    display: none
