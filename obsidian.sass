@@ -14,40 +14,47 @@ $accent-color-steps: 5, 25, 50, 75
 .theme-light
   --background-primary: #{$background-color}
   --accent-color: #{$accent-color-default}
-  @each $step in $accent-color-steps
-    --accent-color-l#{$step}: #{color.scale($accent-color-default, $lightness: +$step*1%)}
-    --accent-color-d#{$step}: #{color.scale($accent-color-default, $lightness: -$step*1%)}
-    --accent-color-s#{$step}: #{color.scale($accent-color-default, $saturation: -$step*1%)}
 
+  // Default accent colors if no theme is selected
+  @each $step in $accent-color-steps
+    --accent-color-white_#{$step}: #{color.scale($accent-color-default, $lightness: +$step*1%)}
+    --accent-color-black_#{$step}: #{color.scale($accent-color-default, $lightness: -$step*1%)}
+    --accent-color-alpha_#{$step}: #{color.change($accent-color-default, $alpha: calc($step/100))}
+
+  // Accent colors per theme
   @each $accent-name, $accent-color-base in $accent-color-bases
     &.theme-accent-#{$accent-name}
       --accent-color: #{$accent-color-base}
       @each $step in $accent-color-steps
-        --accent-color-l#{$step}: #{color.scale($accent-color-base, $lightness: +$step*1%)}
-        --accent-color-d#{$step}: #{color.scale($accent-color-base, $lightness: -$step*1%)}
-        --accent-color-s#{$step}: #{color.scale($accent-color-base, $alpha: $step*1%)}
+        --accent-color-white_#{$step}: #{color.change($accent-color-base, $whiteness: $step*1%)}
+        --accent-color-black_#{$step}: #{color.change($accent-color-base, $blackness: $step*1%)}
+        --accent-color-alpha_#{$step}: #{color.change($accent-color-base, $alpha: calc($step/100))}
 
   --interactive-accent: var(--accent-color)
-  --text-accent: var(--accent-color)
-  --text-accent-hover: var(--accent-color-d25)
 
-  --titlebar-background: var(--accent-color-l50)
+  --text-accent: var(--accent-color)
+  --text-accent-hover: var(--accent-color-black_25)
+
+  --titlebar-background: var(--accent-color-alpha_50)
   --titlebar-background-focused: var(--accent-color)
 
-  --tab-outline-color: var(--accent-color-d5)
+  --tab-outline-color: var(--accent-color-white_25)
   --tab-outline-width: 1px
 
-  --tab-text-color: var(--accent-color-d50)
-  --tab-text-color-focused: var(--accent-color-d75)
+  --tab-text-color: var(--accent-color-black_75)
+  --tab-text-color-active: var(--accent-color-black_75)
+  --tab-text-color-focused: var(--accent-color-black_75)
 
-  --icon-color: var(--accent-color-d50)
-  --icon-color-hover: var(--accent-color-d50)
-  --icon-color-active: var(--accent-color-d75)
-  --icon-color-focused: var(--accent-color-d75)
+  --icon-color: var(--accent-color-black_75)
+  --icon-color-hover: var(--accent-color-black_75)
+  --icon-color-active: var(--accent-color-black_75)
+  --icon-color-focused: var(--accent-color-black_75)
+
+  --divider-color: var(--accent-color-alpha_25)
 
   .workspace-tab-header-status-icon,
   .workspace-tab-header-inner-icon
-    color: var(--accent-color-d50)
+    color: var(--accent-color-black_75)
 
 @function font_size($factor)
   @return calc(var(--font-text-size) * $factor)
@@ -65,9 +72,10 @@ body
 
   --code-size: #{font_size($monospace-size-factor)}
 
+
 .workspace-tabs.mod-stacked .workspace-tab-container .workspace-tab-header
-  background-color: var(--background-secondary) !important
-  border-left: 3px solid var(--accent-color-l25)
+  background-color: var(--accent-color-alpha_5) !important
+  border-left: 2px solid var(--accent-color-alpha_75)
 
 @import edit_mode
 @import preview_mode
