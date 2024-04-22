@@ -1,81 +1,6 @@
-@use "sass:meta"
-@use "sass:color"
-
-$monospace-font: "Inconsolata"
-$monospace-size-factor: 1.1
-$background-color: rgb(249, 247, 243)
-
-$accent-color-default: #000
-$accent-color-bases: ("red": rgb(203, 77, 73), "green": rgb(54, 145, 132), "blue": rgb(0, 99, 177), "purple": rgb(123, 108, 217))
-$accent-color-steps: 5, 25, 50, 75
 
 @import _settings
-
-.theme-light
-  --background-primary: #{$background-color}
-  --accent-color: #{$accent-color-default}
-
-  // Default accent colors if no theme is selected
-  @each $step in $accent-color-steps
-    --accent-color-white_#{$step}: #{color.scale($accent-color-default, $lightness: +$step*1%)}
-    --accent-color-black_#{$step}: #{color.scale($accent-color-default, $lightness: -$step*1%)}
-    --accent-color-alpha_#{$step}: #{color.change($accent-color-default, $alpha: calc($step/100))}
-
-  // Accent colors per theme
-  @each $accent-name, $accent-color-base in $accent-color-bases
-    &.theme-accent-#{$accent-name}
-      --accent-color: #{$accent-color-base}
-      @each $step in $accent-color-steps
-        --accent-color-white_#{$step}: #{color.change($accent-color-base, $whiteness: $step*1%)}
-        --accent-color-black_#{$step}: #{color.change($accent-color-base, $blackness: $step*1%)}
-        --accent-color-alpha_#{$step}: #{color.change($accent-color-base, $alpha: calc($step/100))}
-
-  --interactive-accent: var(--accent-color)
-
-  --text-accent: var(--accent-color)
-  --text-accent-hover: var(--accent-color-black_25)
-
-  --titlebar-background: var(--accent-color-alpha_50)
-  --titlebar-background-focused: var(--accent-color)
-
-  --tab-outline-color: var(--accent-color-white_25)
-  --tab-outline-width: 1px
-
-  --tab-text-color: var(--accent-color-black_75)
-  --tab-text-color-active: var(--accent-color-black_75)
-  --tab-text-color-focused: var(--accent-color-black_75)
-
-  --icon-color: var(--accent-color-black_75)
-  --icon-color-hover: var(--accent-color-black_75)
-  --icon-color-active: var(--accent-color-black_75)
-  --icon-color-focused: var(--accent-color-black_75)
-
-  --divider-color: var(--accent-color-alpha_25)
-
-  .workspace-tab-header-status-icon,
-  .workspace-tab-header-inner-icon
-    color: var(--accent-color-black_75)
-
-@function font_size($factor)
-  @return calc(var(--font-text-size) * $factor)
-
-body
-  --font-monospace: #{meta.inspect($monospace-font)}, monospace !important
-
-  --tab-font-size: #{font_size(0.85)}
-  --tab-font-weight: 600
-
-  --tab-stacked-font-size: #{font_size(0.9)}
-  --tab-stacked-font-weight: 600
-
-  --nav-item-size: #{font_size(0.9)}
-
-  --code-size: #{font_size($monospace-size-factor)}
-
-
-.workspace-tabs.mod-stacked .workspace-tab-container .workspace-tab-header
-  background-color: var(--accent-color-alpha_5) !important
-  border-left: 2px solid var(--accent-color-alpha_75)
+@import theme
 
 @import edit_mode
 @import preview_mode
@@ -85,7 +10,7 @@ body
 @import callouts
 @import tags
 
-// Fix: code blocks should have less space around them
+// fix: code blocks should have less space around them
 pre.language-shell
   margin: 10px
   border-radius: 5px
@@ -96,5 +21,10 @@ code.language-shell
 ul
   padding-left: 20px !important
 
+// fix: assets should be less visible in the file panel
+.nav-folder-title[data-path$=".assets"],
+.nav-file-title[data-path*=".assets"]
+  color: var(--text-faint) !important
+
 @import plugin_jira
-@import plugin_kanban
+//@import plugin_kanban

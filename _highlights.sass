@@ -1,22 +1,25 @@
 // Customization of highlights (`==TEXT==`)
 
-span.cm-highlight, mark
-  padding-left: 3px
-  padding-right: 3px
+span.cm-formatting-highlight
+  background-color: var(--background-primary) !important
+  font-weight: normal !important
+
+// highlights in preview mode
+mark
+  padding-left: 5px
+  padding-right: 5px
+  border: 1px solid rgba(var(--text-highlight-bg-rgb), 0.9)
   border-radius: 5px
-  border: 1px solid grey
+  font-weight: 500
 
-=normal_text
-  font-style: normal
-  font-weight: normal
-
-// Bolded highlights turn red
-span.cm-highlight.cm-strong, strong > mark
-  background-color: rgb(238, 94, 94) !important
-  color: white !important
-  +normal_text
-
-// Italicized highlights turn green
+// italicized highlights are green
 span.cm-highlight.cm-em, em > mark
-  background-color: rgb(221, 255, 170) !important
-  +normal_text
+  --text-highlight-bg-rgb: var(--color-green-rgb)
+  --text-highlight-bg: rgba(var(--text-highlight-bg-rgb), 0.2)
+  font-style: normal
+
+// bolded highlights are red
+span.cm-highlight.cm-strong, strong > mark
+  --text-highlight-bg-rgb: var(--color-red-rgb)
+  --text-highlight-bg: rgb(var(--text-highlight-bg-rgb), 0.2)
+  font-style: normal

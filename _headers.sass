@@ -3,6 +3,7 @@
   @each $level in $levels
     .markdown-preview-view h#{$level},
     .cm-s-obsidian .cm-header-#{$level}
+      margin-top: 0
       @content
 
 +header(1)
@@ -18,7 +19,7 @@
   font-weight: 600
 
 +header(3, 5)
-  border-bottom: 1px solid black
+  border-bottom: 1px solid var(--accent-color-alpha_75)
 
 +header(6)
   font-size: font_size(1.05) !important

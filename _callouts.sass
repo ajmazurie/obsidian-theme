@@ -1,4 +1,7 @@
 
+// See https://help.obsidian.md/Editing+and+formatting/Callouts
+// See https://lucide.dev/icons/
+
 body
   --callout-padding: 12px
 
@@ -7,44 +10,77 @@ div.callout-content
     margin-block-start: 5px
     margin-block-end: 5px
 
-.callout[data-callout="card"]
-  background-color: var(--accent-color-alpha_5)
-  border-color: var(--accent-color-alpha_25)
-
-  margin-left: 5px
-  margin-right: 5px
-
-  border-radius: 8px
+.callout
+  border-radius: 5px
   border-width: 2px
 
-  &:is([data-callout-metadata=right])
-    margin-left: 10%
+  // centered
+  &:is([data-callout-metadata~="center"])
+    margin-left: 5%
+    margin-right: 5%
 
-  &:is([data-callout-metadata=left])
-    margin-right: 10%
+  // with a title
+  &:is([data-callout-metadata~="title"])
+    padding: 0
 
-  &:is([data-callout-metadata=center])
-    margin-left: 10%
-    margin-right: 10%
+    .callout-title
+      background-color: rgba(var(--callout-color), 0.1)
+      border-top-left-radius: 5px
+      border-top-right-radius: 5px
 
-  // With a title
-  &:is([data-callout-metadata=title])
-    padding: 10px 10px 5px 10px
+    .callout-icon
+      display: none
 
     .callout-title-inner
       color: var(--text-normal)
-      font-size: font_size(1.05)
       font-weight: 500
-      margin-bottom: 5px
+      font-size: font_size(1.05)
+      margin: 2px 0 2px 10px
 
-  // Without a title
-  &:not([data-callout-metadata=title])
+    .callout-content
+      padding-left: 10px
+      padding-right: 10px
+
+  // without a title
+  &:not([data-callout-metadata~="title"])
     padding: 10px
+
+    .callout-icon
+      margin-left: -5px
 
     .callout-title-inner
       color: var(--text-normal)
       font-weight: normal
+      margin-left: 2px
 
-  // No icons
+  // without an icon
+  &:is([data-callout-metadata~="no-icon"])
+    .callout-icon
+      display: none
+
+.callout[data-callout="card"]
+  background-color: var(--accent-color-alpha_5)
+  border-color: var(--accent-color-alpha_5)
+
   .callout-icon
     display: none
+
+.callout[data-callout="red"]
+  --callout-color: var(--color-red-rgb)
+  --callout-icon: lucide-arrow-right
+
+.callout[data-callout="orange"]
+  --callout-color: var(--color-orange-rgb)
+  --callout-icon: lucide-arrow-right
+
+.callout[data-callout="green"]
+  --callout-color: var(--color-green-rgb)
+  --callout-icon: lucide-arrow-right
+
+.callout[data-callout="cyan"]
+  --callout-color: var(--color-cyan-rgb)
+  --callout-icon: lucide-arrow-right
+
+.callout[data-callout="blue"]
+  --callout-color: var(--color-blue-rgb)
+  --callout-icon: lucide-arrow-right
