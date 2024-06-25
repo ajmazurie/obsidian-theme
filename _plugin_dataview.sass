@@ -2,17 +2,18 @@
 // See https://blacksmithgu.github.io/obsidian-dataview/
 
 .table-view-table
-  thead
-    tr > th
+  thead > tr
+    th
       font-weight: 600
       font-size: font_size(1)
       border-bottom: none
 
-    tr > th + th
+    th + th
       border-left: solid 1px var(--accent-color-alpha_50)
 
-  tbody > tr > td + td
-    border-left: solid 1px var(--accent-color-alpha_50)
+  tbody > tr
+    td + td
+      border-left: solid 1px var(--accent-color-alpha_50)
 
   tbody > tr:nth-child(odd)
     background-color: var(--accent-color-alpha_5)
