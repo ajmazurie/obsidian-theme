@@ -19,7 +19,7 @@ div.callout-content
     margin-left: 5%
     margin-right: 5%
 
-  // with a title
+  // with an emphasized title
   &:is([data-callout-metadata~="title"])
     padding: 0
 
@@ -41,7 +41,7 @@ div.callout-content
       padding-left: 10px
       padding-right: 10px
 
-  // without a title
+  // with a normal title
   &:not([data-callout-metadata~="title"])
     padding: 10px
 
@@ -52,6 +52,13 @@ div.callout-content
       color: var(--text-normal)
       font-weight: normal
       margin-left: 2px
+
+  // without a title
+  &:is([data-callout-metadata~="no-title"])
+    padding: 5px
+
+    .callout-title
+      display: none
 
   // without an icon
   &:is([data-callout-metadata~="no-icon"])
