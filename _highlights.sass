@@ -23,3 +23,13 @@ span.cm-highlight.cm-strong, strong > mark
   --text-highlight-bg-rgb: var(--color-red-rgb)
   --text-highlight-bg: rgb(var(--text-highlight-bg-rgb), 0.2)
   font-style: normal
+
+// highlights in rendered headers
+.markdown-rendered
+  h1, h2, h3, h4, h5, h6
+    mark
+      padding: 0 5px 0 0
+      border: none
+      font-weight: normal
+      color: var(--accent-color-black_50)
+      --text-highlight-bg: var(--background-primary)
