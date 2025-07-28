@@ -19,6 +19,14 @@ div.callout-content
     margin-left: 5%
     margin-right: 5%
 
+  &:is([data-callout-metadata~="right"])
+    margin-left: 10%
+    margin-right: 0
+
+  &:is([data-callout-metadata~="left"])
+    margin-left: 0
+    margin-right: 10%
+
   // with an emphasized title
   &:is([data-callout-metadata~="title"])
     padding: 0
